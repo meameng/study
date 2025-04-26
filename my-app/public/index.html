@@ -29,47 +29,5 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script> <!--propTypes 패키지-->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel">
-    function Btn ({text, fontSize=14, onClick}) {
-      // fontSize Default : 14
-      return (
-        <button 
-          onClick = {onClick}
-          style={{
-          backgroundColor: "tomato", color : "white", padding: "10px 20px", borderRadius:10, border:0,
-          fontSize: fontSize,
-        }}>{text}</button>
-      )
-    }
-    // Btn.propTypes = {
-    //   text:PropTypes.string,
-    //   big:PropTypes.boolen,
-    // }
-    // 이 부분 Memo와 함께 작용X, 이 경우에는 Memo아래로 사용
-
-    const MemorizedBtn = React.memo(Btn); //props가 변경된 것만 다시 그려내는 memo 기능
-    MemorizedBtn.propTypes = {
-      text:PropTypes.string.isRequired,
-      fontSize:PropTypes.number,
-    }
-    function App() {
-      const [value, setValue] = React.useState("Save Changes");
-      const chngValue = () => setValue("Revert Changes");
-      return(
-        <div>
-          <MemorizedBtn text={value} fontSize={16} onClick={chngValue}/> 
-          <MemorizedBtn text="Countinue"/>
-        </div>
-      );
-      //이곳의 onClick은 props임. Btn에서 다 설정해주어야만 하는 부분
-    } 
-    //test. 내일 작업할 수 있나? ㅠㅠ
-    
-    const root = document.querySelector("#root");
-    ReactDOM.render(<App/>, root);
-  </script>
+  
 </html>
